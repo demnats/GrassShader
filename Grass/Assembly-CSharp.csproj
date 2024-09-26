@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Player\Movement.cs" />
+    <Compile Include="Assets\LookAround.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shader\Grass.shader" />

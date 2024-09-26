@@ -3,14 +3,18 @@ Shader "Unlit/Grass"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Color("Color", Color) = (1,1,1,1)
+        _PlayerPosition("Player Position" , Vector) = (0,0,0,0)
+        _Radius("Radius", float) = 1.0
+        _EffectStrenght("Effect Strength", float) = 0.1
     }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
-
-        Pass
+        SubShader
         {
+            Tags { "RenderType" = "Opaque" }
+            LOD 100
+
+            Pass
+            {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -18,6 +22,11 @@ Shader "Unlit/Grass"
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+
+            float4 _Color;
+            float4 _PlayerPosition;
+            float _Radius;
+            float _EffectStrenght;
 
             struct appdata
             {
@@ -49,6 +58,7 @@ Shader "Unlit/Grass"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
+                col *= _Color;
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
             }
