@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 1005401597}
   - component: {fileID: 1005401596}
   - component: {fileID: 1005401595}
+  - component: {fileID: 1005401599}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -543,6 +544,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005401599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005401594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d282d0a6a69df4b81ddafd735e4b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 943595841}
+  grassMaterial: {fileID: 2100000, guid: 86db844e2970c3a4495615c93258e064, type: 2}
 --- !u!1 &1190381715
 GameObject:
   m_ObjectHideFlags: 0

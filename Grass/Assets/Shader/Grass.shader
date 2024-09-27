@@ -23,10 +23,13 @@ Shader "Unlit/Grass"
 
             #include "UnityCG.cginc"
 
-            float4 _Color;
+            fixed4 _Color;
             float4 _PlayerPosition;
             float _Radius;
             float _EffectStrenght;
+
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
 
             struct appdata
             {
@@ -37,30 +40,32 @@ Shader "Unlit/Grass"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
+                float4 worldPos : TEXCOORD1;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                float4 worldPos = mul(unity_ObjectToWorld,float4( v.vertex.xyz,1.0));
+                o.worldPos = worldPos;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float dis = distance(i.worldPos.xyz, _PlayerPosition.xyz);
+            float mask = smoothstep(_Radius - 0.2, _Radius, dis);
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 colorInside = _Color;
+                fixed4 colorOutside = tex2D(_MainTex, i.uv);
                 // apply fog
-                col *= _Color;
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                fixed4 finalColor = lerp(colorInside, colorOutside, mask);
+                return finalColor;
             }
             ENDCG
         }
