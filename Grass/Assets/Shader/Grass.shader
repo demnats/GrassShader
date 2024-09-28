@@ -7,6 +7,7 @@ Shader "Unlit/Grass"
         _PlayerPosition("Player Position" , Vector) = (0,0,0,0)
         _Radius("Radius", float) = 1.0
         _EffectStrenght("Effect Strength", float) = 0.1
+        _FadeAmount("Fade", float) = 1.0
     }
         SubShader
         {
@@ -27,6 +28,7 @@ Shader "Unlit/Grass"
             float4 _PlayerPosition;
             float _Radius;
             float _EffectStrenght;
+            float _FadeAmount;
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
@@ -59,12 +61,15 @@ Shader "Unlit/Grass"
             fixed4 frag (v2f i) : SV_Target
             {
                 float dis = distance(i.worldPos.xyz, _PlayerPosition.xyz);
-            float mask = smoothstep(_Radius - 0.2, _Radius, dis);
-                // sample the texture
-                fixed4 colorInside = _Color;
+
+                float innerFadeStart = _Radius - _Radius * _FadeAmount;
+                float innerMask = smoothstep(innerFadeStart, _Radius, dis);
+                float outerMask = smoothstep(_Radius, _Radius + _EffectStrenght, dis);
+
                 fixed4 colorOutside = tex2D(_MainTex, i.uv);
-                // apply fog
-                fixed4 finalColor = lerp(colorInside, colorOutside, mask);
+                fixed4 greenToTexture = lerp(_Color, colorOutside, innerMask);
+
+                fixed4 finalColor = lerp(greenToTexture, colorOutside, outerMask);
                 return finalColor;
             }
             ENDCG

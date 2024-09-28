@@ -5,12 +5,16 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+    [SerializeField] private Transform orientation;
     private Vector2 input;
     private Rigidbody rb;
+
+    private Vector3 moveDirection;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -22,6 +26,12 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector3 (input.x*movementSpeed,0,input.y*movementSpeed));
+        MovePlayerDirection();
+    }
+
+    private void MovePlayerDirection()
+    {
+        moveDirection = orientation.forward * input.y + orientation.right * input.x;
+        rb.AddForce(moveDirection.normalized *movementSpeed);
     }
 }

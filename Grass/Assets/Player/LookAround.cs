@@ -11,7 +11,7 @@ public class LookAround : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         orientation = GetComponent<Transform>();
     }
 
@@ -23,7 +23,8 @@ public class LookAround : MonoBehaviour
 
         rotation.y += mouse.x;
         rotation.x -= mouse.y;
+        rotation.x = Mathf.Clamp(rotation.x, -90f,90f);
 
-
+        transform.rotation = Quaternion.Euler(rotation);
     }
 }
