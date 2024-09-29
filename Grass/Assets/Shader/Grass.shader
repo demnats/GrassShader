@@ -8,6 +8,7 @@ Shader "Unlit/Grass"
         _Radius("Radius", float) = 1.0
         _EffectStrenght("Effect Strength", float) = 0.1
         _FadeAmount("Fade", float) = 1.0
+        _MaxHeight ("Max Height", float) = 0.5
     }
         SubShader
         {
@@ -29,6 +30,7 @@ Shader "Unlit/Grass"
             float _Radius;
             float _EffectStrenght;
             float _FadeAmount;
+            float _MaxHeight;
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
@@ -51,10 +53,13 @@ Shader "Unlit/Grass"
             v2f vert (appdata v)
             {
                 v2f o;
+
+                o.uv = v.uv;
+
+                float4 worldPos = mul(unity_ObjectToWorld,float4( v.vertex.xyz,1.0));
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                float4 worldPos = mul(unity_ObjectToWorld,float4( v.vertex.xyz,1.0));
-                o.worldPos = worldPos;
+                o.worldPos = worldPos; 
                 return o;
             }
 
