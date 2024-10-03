@@ -62,16 +62,18 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EffectStrenght: 0.84
+    - _EffectStrenght: 0.3
     - _FadeAmount: 0.45
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MaxHeight: 0.78
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Radius: 8.52
+    - _RandomHeight: 0.7
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -80,5 +82,5 @@ Material:
     m_Colors:
     - _Color: {r: 0.24245548, g: 0.8490566, b: 0.13216448, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlayerPosition: {r: 14.360874, g: 0, b: 14.44896, a: 0}
+    - _PlayerPosition: {r: 0.000008327231, g: 0, b: -0.000014108557, a: 0}
   m_BuildTextureStacks: []

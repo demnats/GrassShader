@@ -25,6 +25,7 @@ Shader "Unlit/Grass"
 
             #include "UnityCG.cginc"
 
+
             fixed4 _Color;
             float4 _PlayerPosition;
             float _Radius;
@@ -46,18 +47,52 @@ Shader "Unlit/Grass"
                 float2 uv : TEXCOORD0;
                 float4 worldPos : TEXCOORD1;
                 UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
+                    float4 vertex : SV_POSITION;
             };
+            float GetRandomFloat(float2 seed) 
+            {
+                float random = (frac(sin(dot(seed, float2(12.9898, 78.233) * 2.0)) * 43758.5453));
+                    return random;
+            }
+
+            float3 GrassTri(float3 basePos, float height, float width) 
+            {
+                float3 vertexA = basePos;
+                float3 vertexB = basePos + float3(-width * 0.5, height,0);
+                float3 vertexC = basePos + float3(width * 0.5, height, 0);
+
+                if (basePos.x <0.33) 
+                {
+                    return vertexA;
+                }
+                else if (basePos.x < 0.66) 
+                {
+                    return vertexB;
+                }
+                else 
+                {
+                    return vertexC;
+                }
+            }
 
 
             v2f vert (appdata v)
             {
                 v2f o;
+                float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
+
+                float dist = distance(worldPos.xyz, _PlayerPosition.xyz);
+                float innerFadeS = _Radius - _Radius * _FadeAmount;
+
+                float randomHeight = GetRandomFloat(v.vertex.xy);
+                float _GrassWidth = GetRandomFloat(v.vertex.xy);
+                float height = smoothstep(_Radius, _Radius +_EffectStrenght,dist);
+                float heightAmount =  lerp(0.2,_MaxHeight , height);
 
                 o.uv = v.uv;
 
-                float4 worldPos = mul(unity_ObjectToWorld,float4( v.vertex.xyz,1.0));
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                worldPos.xyz -= GrassTri(worldPos.xyz, height, _GrassWidth);
+                o.vertex = UnityObjectToClipPos(worldPos);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.worldPos = worldPos; 
                 return o;
