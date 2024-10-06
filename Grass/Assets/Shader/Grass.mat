@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Grass
   m_Shader: {fileID: 4800000, guid: a640d3e827b68434cb0c3447c2c9902c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -58,6 +61,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AmbientStrength: 0.5
+    - _BladeCurve: 2
+    - _BladeForward: 0.38
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -67,21 +73,31 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GrassHeight: 1
+    - _GrassWidth: 0.06
     - _GreenThreshold: 0.5
+    - _MaxDist: 60
     - _MaxHeight: 3.73
     - _Metallic: 0
+    - _MinDist: 40
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Rad: 0.6
     - _Radius: 6.47
     - _RandomHeight: 0.7
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Strength: 5
     - _UVSec: 0
+    - _WindSpeed: 100
+    - _WindStrength: 0.05
     - _ZWrite: 1
     m_Colors:
+    - _BottomColor: {r: 0, g: 1, b: 0, a: 1}
     - _Color: {r: 0.15294123, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlayerPosition: {r: 0.22089039, g: 0, b: 1.0688375, a: 0}
+    - _PlayerPosition: {r: -47.91, g: 0, b: 3.3, a: 0}
+    - _TopColor: {r: 1, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
