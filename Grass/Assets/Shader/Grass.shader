@@ -18,13 +18,18 @@ Shader "Unlit/Grass"
 
             Pass
             {
+                            Cull Off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             // make fog work
             #pragma multi_compile_fog
             #pragma geometry geo
+
             #include "UnityCG.cginc"
+            #include "Autolight.cginc"
+            #include "Shaders/CustomTessellation.cginc"
+
 
 
             fixed4 _Color;
@@ -61,9 +66,10 @@ Shader "Unlit/Grass"
              {
                  v2f o;
                  float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
-                 o.vertex = UnityObjectToClipPos(v.vertex);
-                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                 o.vertex = UnityObjectToClipPos(worldPos);
                  o.worldPos = worldPos;
+                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+
                  return o;
              }
 
@@ -77,34 +83,28 @@ Shader "Unlit/Grass"
              void geo(triangle float4 IN[3] : SV_POSITION, inout TriangleStream<geometryOutput> triStream)
              {
                  //float3 pos = IN[0];
-
-                 float3 worldPos = IN[0].worldPos.xyz;
                  geometryOutput o;
+                 float3 worldPos = mul(unity_ObjectToWorld, IN[0]).xyz;
+                 o.worldPos = float4(worldPos, 1.0);
 
 
-                 o.pos = UnityObjectToClipPos(pos + float3(0.5, 0, 0));
+                 o.pos = UnityObjectToClipPos(worldPos + float3(0.5, 0, 0));
                  triStream.Append(o);
 
-                 o.pos = UnityObjectToClipPos(pos + float3(-0.5, 0, 0));
+                 o.pos = UnityObjectToClipPos(worldPos + float3(-0.5, 0, 0));
                  triStream.Append(o);
 
-                 o.pos = UnityObjectToClipPos(pos + float3(0, 1, 0));
+                 o.pos = UnityObjectToClipPos(worldPos + float3(0, 1, 0));
                  triStream.Append(o);
              }
 
              fixed4 frag(v2f i) : SV_Target
              {
-                 float dis = distance(i.worldPos.xyz, _PlayerPosition.xyz);
-
-                 float innerFadeStart = _Radius - _Radius * _FadeAmount;
-                 float innerMask = smoothstep(innerFadeStart, _Radius, dis);
-                 float outerMask = smoothstep(_Radius, _Radius + _EffectStrenght, dis);
-
-                 fixed4 colorOutside = tex2D(_MainTex, i.uv);
-                 fixed4 greenToTexture = lerp(_Color, colorOutside, innerMask);
-
-                 fixed4 finalColor = lerp(greenToTexture, colorOutside, outerMask);
-                 return finalColor;
+                 // sample the texture
+                 fixed4 col = tex2D(_MainTex, i.uv);
+             // apply fog
+             UNITY_APPLY_FOG(i.fogCoord, col);
+             return col;
              }
              ENDCG
          }

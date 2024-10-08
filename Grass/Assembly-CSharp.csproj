@@ -63,9 +63,13 @@
     <Compile Include="Assets\Player\LookAround.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shader\ShaderSkeleton.shader" />
+    <None Include="Assets\Shader\GrassShader.shader" />
+    <None Include="Assets\Shader\Shaders\CustomTessellation.cginc" />
     <None Include="Assets\Shader\Grass.shader" />
     <None Include="Assets\Shader\EmptyShader.shader" />
     <None Include="Assets\Shader\Grass3D.shader" />
+    <None Include="Assets\Shader\Shaders\TessellationExample.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
