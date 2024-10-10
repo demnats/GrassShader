@@ -15,7 +15,7 @@ D:/Repositories/GrassShader/Grass
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-52027
+64293
 Successfully changed project path to: D:/Repositories/GrassShader/Grass
 D:/Repositories/GrassShader/Grass
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ D:/Repositories/GrassShader/Grass
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [18788] Host "[IP] 192.168.2.15 [Port] 0 [Flags] 2 [Guid] 133179673 [EditorId] 133179673 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FV6CCSP) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [13672] Host "[IP] 192.168.2.15 [Port] 0 [Flags] 2 [Guid] 1989220419 [EditorId] 1989220419 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FV6CCSP) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [18788] Host "[IP] 192.168.2.15 [Port] 0 [Flags] 2 [Guid] 133179673 [EditorId] 133179673 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FV6CCSP) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [13672] Host "[IP] 192.168.2.15 [Port] 0 [Flags] 2 [Guid] 1989220419 [EditorId] 1989220419 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FV6CCSP) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 2340.16 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 8.80 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.2.9f1 (1cc571a6ec95)
 [Subsystems] Discovering subsystems at path D:/Unity/Editor/2022.2.9f1/Editor/Data/Resources/UnitySubsystems
@@ -67,41 +67,41 @@ Initialize mono
 Mono path[0] = 'D:/Unity/Editor/2022.2.9f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Editor/2022.2.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/Unity/Editor/2022.2.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56644
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56824
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Editor/2022.2.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.236424 seconds.
-- Loaded All Assemblies, in  7.817 seconds
+Registered in 0.005563 seconds.
+- Loaded All Assemblies, in  0.386 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.377 seconds
+- Finished resetting the current domain, in  0.339 seconds
 Domain Reload Profiling:
-	ReloadAssembly (6765ms)
-		BeginReloadAssembly (5668ms)
+	ReloadAssembly (236ms)
+		BeginReloadAssembly (113ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
 		LoadAllAssembliesAndSetupDomain (0ms)
-			LoadAssemblies (5667ms)
+			LoadAssemblies (111ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (1046ms)
-				TypeCache.Initialize (1045ms)
-					TypeCache.ScanAssembly (1043ms)
+			SetupTypeCache (146ms)
+				TypeCache.Initialize (144ms)
+					TypeCache.ScanAssembly (142ms)
 				ResolveRequiredComponents (1ms)
 		FinalizeReload (0ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (0ms)
-			SetupLoadedEditorAssemblies (296ms)
+			SetupLoadedEditorAssemblies (265ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (10ms)
-				SetLoadedEditorAssemblies (10ms)
+				SetLoadedEditorAssemblies (9ms)
 				RefreshPlugins (0ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (186ms)
-				ProcessInitializeOnLoadMethodAttributes (89ms)
+				ProcessInitializeOnLoadAttributes (187ms)
+				ProcessInitializeOnLoadMethodAttributes (57ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -111,48 +111,48 @@ Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Repositories\GrassShader\Grass\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repositories\GrassShader\Grass\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  8.143 seconds
-Refreshing native plugins compatible for Editor in 2.58 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.826 seconds
+Refreshing native plugins compatible for Editor in 2.32 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.818 seconds
+- Finished resetting the current domain, in  0.730 seconds
 Domain Reload Profiling:
-	ReloadAssembly (252ms)
-		BeginReloadAssembly (153ms)
+	ReloadAssembly (256ms)
+		BeginReloadAssembly (156ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (6ms)
+			DisableScriptedObjects (7ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (24ms)
-		LoadAllAssembliesAndSetupDomain (7890ms)
-			LoadAssemblies (7235ms)
+			CreateAndSetChildDomain (26ms)
+		LoadAllAssembliesAndSetupDomain (569ms)
+			LoadAssemblies (278ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (734ms)
-				TypeCache.Initialize (710ms)
-					TypeCache.ScanAssembly (704ms)
+			SetupTypeCache (365ms)
+				TypeCache.Initialize (344ms)
+					TypeCache.ScanAssembly (340ms)
 				ResolveRequiredComponents (4ms)
 		FinalizeReload (0ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (0ms)
-			SetupLoadedEditorAssemblies (641ms)
+			SetupLoadedEditorAssemblies (567ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (5ms)
 				RefreshPlugins (0ms)
-				BeforeProcessingInitializeOnLoad (62ms)
-				ProcessInitializeOnLoadAttributes (541ms)
-				ProcessInitializeOnLoadMethodAttributes (24ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (473ms)
+				ProcessInitializeOnLoadMethodAttributes (20ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (8ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.13 seconds
-Refreshing native plugins compatible for Editor in 2.54 ms, found 3 plugins.
+			AwakeInstancesAfterBackupRestoration (7ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 2.26 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3113 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 30 unused Assets / (39.0 KB). Loaded Objects now: 3604.
-Memory consumption went from 500.0 MB to 500.0 MB.
-Total: 4.345800 ms (FindLiveObjects: 0.349100 ms CreateObjectMapping: 0.084500 ms MarkObjects: 3.844200 ms  DeleteObjects: 0.066600 ms)
+Unloading 3107 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 30 unused Assets / (39.0 KB). Loaded Objects now: 3598.
+Memory consumption went from 498.4 MB to 498.4 MB.
+Total: 3.716900 ms (FindLiveObjects: 0.319000 ms CreateObjectMapping: 0.085700 ms MarkObjects: 3.251200 ms  DeleteObjects: 0.059800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -168,9 +168,62 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 349436.095972 seconds.
-  path: Assets/Shader/Grass 3.mat
-  artifactKey: Guid(4fba4e74d4a773e4aa2fb42d749a154a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shader/Grass 3.mat using Guid(4fba4e74d4a773e4aa2fb42d749a154a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c103480c468ba25d31737d1718fda24') in 0.179787 seconds 
+  Time since last request: 532018.982426 seconds.
+  path: Assets/New Terrain.asset
+  artifactKey: Guid(4903cd71327fd2e42a3946937745fe39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain.asset using Guid(4903cd71327fd2e42a3946937745fe39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6222add38779004cbde859924d0d9de') in 0.065403 seconds 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 42.513744 seconds.
+  path: Assets/Shader/Grass.mat
+  artifactKey: Guid(86db844e2970c3a4495615c93258e064) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Grass.mat using Guid(86db844e2970c3a4495615c93258e064) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58cacf38c913d85ba7fa67c38a680540') in 0.078441 seconds 
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Shader/Grass.jpeg
+  artifactKey: Guid(aaa60f471510abd4f9e0856d98577ab0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Grass.jpeg using Guid(aaa60f471510abd4f9e0856d98577ab0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6223b63f9cc4c6817ec54b0919679ac1') in 0.015137 seconds 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Shader/Grass 3.mat
+  artifactKey: Guid(4fba4e74d4a773e4aa2fb42d749a154a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Grass 3.mat using Guid(4fba4e74d4a773e4aa2fb42d749a154a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7f5902ef6da9363fe45be8eac55e658') in 0.032529 seconds 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Shader/Grass 2.mat
+  artifactKey: Guid(91a83d197e152754888f6dee20c76ef9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Grass 2.mat using Guid(91a83d197e152754888f6dee20c76ef9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fc52a6804978d8339ed22a646ae459d') in 0.025612 seconds 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Shader/Grass 4.mat
+  artifactKey: Guid(545ca03681333a2489edf0d9e0bf0714) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/Grass 4.mat using Guid(545ca03681333a2489edf0d9e0bf0714) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8113e6637c5974c194cc9f5f08d4795') in 0.010337 seconds 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Shader/New Terrain Material.mat
+  artifactKey: Guid(c86d1746ade62aa48956528f001a76b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shader/New Terrain Material.mat using Guid(c86d1746ade62aa48956528f001a76b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8ee420cc1359ba3bd747fd7b72a5423') in 0.017873 seconds 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

@@ -1083,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1190381716
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -1130,7 +1130,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 86db844e2970c3a4495615c93258e064, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 545ca03681333a2489edf0d9e0bf0714, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 397820893}
-  grassMaterial: {fileID: 2100000, guid: 86db844e2970c3a4495615c93258e064, type: 2}
+  grassMaterial: {fileID: 2100000, guid: 545ca03681333a2489edf0d9e0bf0714, type: 2}
 --- !u!1 &1944591824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,11 +1284,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944591824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 7.3, y: 1.19, z: -59.2}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}

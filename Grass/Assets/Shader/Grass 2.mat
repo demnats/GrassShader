@@ -65,13 +65,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BendRotationRandom: 0.236
-    - _BladeCurve: 2.14
-    - _BladeForward: 0.29
-    - _BladeHeight: 0.29
-    - _BladeHeightRandom: 0.3
-    - _BladeWidth: -0.05
-    - _BladeWidthRandom: 0.14
+    - _BendRotationRandom: 0.114
+    - _BladeCurve: 2.98
+    - _BladeForward: 0.16
+    - _BladeHeight: 0.57
+    - _BladeHeightRandom: 0.73
+    - _BladeWidth: 0.01
+    - _BladeWidthRandom: 0.02
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
