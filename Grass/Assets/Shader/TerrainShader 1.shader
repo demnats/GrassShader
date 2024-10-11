@@ -72,6 +72,8 @@ Shader "Custom/TerrainShader 1"
             fixed4 s3 = tex2D(_Splat3, IN.uv_Control) * _Color;
 
             o.Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a ;
+
+            //o.Albedo = c;
             //o.Emission = c.rgb;
 
             // Metallic and smoothness come from slider variables
