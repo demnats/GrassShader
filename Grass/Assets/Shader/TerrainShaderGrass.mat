@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 425f55e9ef81a5e48b87c5d6b1bbf35c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal0:
@@ -93,7 +93,7 @@ Material:
     m_Colors:
     - _BottomColor: {r: 0.2850444, g: 0.5660378, b: 0.27500895, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerPosition: {r: -1223, g: 0, b: -65.93, a: 0}
+    - _PlayerPosition: {r: -1243.4253, g: 0, b: -55.921494, a: 0}
     - _TopColor: {r: 0.3737985, g: 0.754717, b: 0.44536504, a: 1}
     - _WindFrequency: {r: 0.01, g: 0.01, b: 0, a: 0.06}
   m_BuildTextureStacks: []

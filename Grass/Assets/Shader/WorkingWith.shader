@@ -54,9 +54,10 @@ Shader "Unlit/ShaderSkeleton"
     #include "UnityCG.cginc"
     #include "Autolight.cginc"
     #include "Shaders/CustomTessellation.cginc"
-
-
+//#pragma surface surf Standard fullforwardshadows
+#pragma instancing_options assumeuniformscaling
         sampler2D _Control;
+        sampler2D _MainTex;
         sampler2D _Splat0;
         sampler2D _Splat1;
         sampler2D _Splat2;
@@ -192,35 +193,28 @@ Shader "Unlit/ShaderSkeleton"
 
 
 
-        struct Input
-        {
-            float2 uv_Control;
-        };
 
-        fixed4 _Color;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
         UNITY_INSTANCING_BUFFER_START(Props)
             // put more per-instance properties here
             UNITY_INSTANCING_BUFFER_END(Props)
 
-            void surf(Input IN /*inout SurfaceOutputStandard o*/)
-        {
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D(_Control, IN.uv_Control) * _Color;
-            fixed4 s0 = tex2D(_Splat0, IN.uv_Control) * _Color;
-            fixed4 s1 = tex2D(_Splat1, IN.uv_Control) * _Color;
-            fixed4 s2 = tex2D(_Splat2, IN.uv_Control) * _Color;
-            fixed4 s3 = tex2D(_Splat3, IN.uv_Control) * _Color;
+        //    void surf(Input IN /*,inout SurfaceOutputStandard o*/ )
+        //{
 
-            //o.Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
-            //o.Emission = c.rgb;
+        //   
+        //    fixed4 c = tex2D(_Control, IN.uv_Control) * _Color;
+        //    fixed4 s0 = tex2D(_Splat0, IN.uv_Control) * _Color;
+        //    fixed4 s1 = tex2D(_Splat1, IN.uv_Control) * _Color;
+        //    fixed4 s2 = tex2D(_Splat2, IN.uv_Control) * _Color;
+        //    fixed4 s3 = tex2D(_Splat3, IN.uv_Control) * _Color;
+        //    _Albedo = c.rgba;
+        //    _Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
+        //    //o.Emission = c.rgb;
 
-            // Metallic and smoothness come from slider variables
-            //o.Alpha = c.a;
-        }
+        //    // Metallic and smoothness come from slider variables
+        //    //o.Alpha = c.a;
+        //}
         ENDCG
 
             SubShader
@@ -244,12 +238,53 @@ Shader "Unlit/ShaderSkeleton"
 
                 #include "Lighting.cginc"
 
+
+
                 float4 _TopColor;
                 float4 _BottomColor;
                 float _TranslucentGain;
 
+                fixed4 _Color;
+                float4 _Color_ST;
+                fixed4 _Albedo;
+
+                //struct Input
+                //{
+                //    float2 uv_Control;
+                //};
+
+                //struct appdata
+                //{
+                //    float4 vertex : POSITION;
+                //    float2 uv : TEXCOORD0;
+                //};
+
+                //struct v2f
+                //{
+                //    float2 uv : TEXCOORD0;
+                //    float4 vertex : SV_POSITION;
+                //};
+
+                //v2f vert(appdata v)
+                //{
+                //    v2f o;
+                //    o.vertex = UnityObjectToClipPos(v.vertex);
+                //    o.uv = TRANSFORM_TEX(v.uv, _Color);
+                //    return o;
+                //}
+
+
                 float4 frag(geometryOutput i, fixed facing : VFACE) : SV_Target
                 {
+                    //fixed4 c = tex2D(_Control, i.uv.xy) * _Color;
+                    //fixed4 s0 = tex2D(_Splat0, i.uv.xy) * _Color;
+                    //fixed4 s1 = tex2D(_Splat1, i.uv.xy) * _Color;
+                    //fixed4 s2 = tex2D(_Splat2, i.uv.xy) * _Color;
+                    //fixed4 s3 = tex2D(_Splat3, i.uv.xy) * _Color;
+                    //float4 albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
+                    //    _Albedo = c.rgba;
+                    //    _Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
+
                     float3 normal = facing > 0 ? i.normal : -i.normal;
                     float shadow = SHADOW_ATTENUATION(i);
                     float NdotL = saturate(saturate(dot(normal, _WorldSpaceLightPos0)) + _TranslucentGain) * shadow;
@@ -258,6 +293,22 @@ Shader "Unlit/ShaderSkeleton"
                     float4 col = lerp(_BottomColor, _TopColor * lightIntensity, i.uv.y);
                     return col;
                 }
+                // float4 frag(v2f i) : SV_Target
+                //{
+                //   
+                //    fixed4 c = tex2D(_Control, i.uv/*_Control*/.xy) * _Color;
+                //    fixed4 s0 = tex2D(_Splat0, i.uv.xy) * _Color;
+                //    fixed4 s1 = tex2D(_Splat1, i.uv.xy) * _Color;
+                //    fixed4 s2 = tex2D(_Splat2, i.uv.xy) * _Color;
+                //     fixed4 s3 = tex2D(_Splat3, i.uv.xy) * _Color;
+                //    _Albedo = c.rgba;
+                //    _Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
+                //    //o.Emission = c.rgb;
+
+                ////    // Metallic and smoothness come from slider variables
+                ////    //o.Alpha = c.a;
+                //    return _Albedo;
+                //}
                 ENDCG
             }
 

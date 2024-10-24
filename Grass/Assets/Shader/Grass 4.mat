@@ -137,7 +137,7 @@ Material:
     - _BottomColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlayerPosition: {r: -1223, g: 0, b: -65.93, a: 0}
+    - _PlayerPosition: {r: -1243.4253, g: 0, b: -55.921494, a: 0}
     - _TopColor: {r: 1, g: 1, b: 1, a: 1}
     - _WindFrequency: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []

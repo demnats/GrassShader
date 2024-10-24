@@ -155,11 +155,11 @@ Shader "Unlit/ShaderSkeleton"
                 float segmentForward = pow(t, _BladeCurve) * forward;
                 float3x3 transformMatrix = i == 0 ? transformationMatrixFacing : transformationMatrix;
 
-                triStream.Append(GenerateGrassVertex(pos , segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix));
-                triStream.Append(GenerateGrassVertex(pos , -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix));
+                triStream.Append(GenerateGrassVertex(pos / innerMask , segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix));
+                triStream.Append(GenerateGrassVertex(pos / innerMask , -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix));
             }
 
-            triStream.Append(GenerateGrassVertex(pos, 0, height, forward, float2(0.5, 1), transformationMatrix));
+            triStream.Append(GenerateGrassVertex(pos / innerMask, 0, height, forward, float2(0.5, 1), transformationMatrix));
         }
         ENDCG
 
