@@ -74,6 +74,7 @@
     <None Include="Assets\Shader\EmptyShader.shader" />
     <None Include="Assets\Shader\GrassShader 1.shader" />
     <None Include="Assets\Shader\Grass3D.shader" />
+    <None Include="Assets\Shader\test1.shader" />
     <None Include="Assets\Shader\WorkingWith.shader" />
     <None Include="Assets\Shader\TessellationExample.shader" />
   </ItemGroup>
