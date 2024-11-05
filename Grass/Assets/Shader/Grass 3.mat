@@ -98,10 +98,10 @@ Material:
     - _WindStrength: 1
     - _ZWrite: 1
     m_Colors:
-    - _BottomColor: {r: 0.23584908, g: 0.17353468, b: 0.09233714, a: 1}
+    - _BottomColor: {r: 0.33962262, g: 0.3215768, b: 0.05286579, a: 1}
     - _Color: {r: 0.15294123, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlayerPosition: {r: -47.91, g: 0, b: 3.3, a: 0}
-    - _TopColor: {r: 0.43452105, g: 0.7169812, b: 0.40922037, a: 1}
+    - _TopColor: {r: 0.69839, g: 0.7176471, b: 0.40784314, a: 1}
     - _WindFrequency: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []

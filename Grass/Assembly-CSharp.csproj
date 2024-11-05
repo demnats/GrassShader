@@ -66,9 +66,11 @@
     <None Include="Assets\Shader\TerrainShader 2.shader" />
     <None Include="Assets\Shader\ShaderSkeleton.shader" />
     <None Include="Assets\Shader\GrassShader.shader" />
+    <None Include="Assets\Shader\test1 (1).shader" />
     <None Include="Assets\Shader\WorkingOnShaderTerrain.shader" />
     <None Include="Assets\Shader\Shaders\CustomTessellation.cginc" />
     <None Include="Assets\Shader\ShaderSkeleton 1.shader" />
+    <None Include="Assets\Shader\UVControlShader.shader" />
     <None Include="Assets\Shader\Grass.shader" />
     <None Include="Assets\Shader\Grass3D 3.shader" />
     <None Include="Assets\Shader\EmptyShader.shader" />

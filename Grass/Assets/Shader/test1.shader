@@ -69,6 +69,10 @@ Shader "Unlit/ShaderSkeleton"
     float4 _GroundColor;
 
     // Ground vertex output structure
+    struct Input
+    {
+        float2 uv_Control;
+    };
     struct groundOutput
     {
         float4 pos : SV_POSITION;
@@ -221,32 +225,40 @@ Shader "Unlit/ShaderSkeleton"
         Pass
         {
             Tags { "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
-            
+            LOD 200
             CGPROGRAM
-            #pragma vertex groundVert
-            #pragma fragment groundFrag
-            #pragma multi_compile_fwdbase
-            
-            #include "Lighting.cginc"
-    //          void surf(Input IN, inout SurfaceOutputStandard o)
-    //    {
-    //    // Albedo comes from a texture tinted by color
-    //    fixed4 c = tex2D(_Control, IN.uv_Control) * _Color;
-    //    fixed4 s0 = tex2D(_Splat0, IN.uv_Control) * _Color;
-    //    fixed4 s1 = tex2D(_Splat1, IN.uv_Control) * _Color;
-    //    fixed4 s2 = tex2D(_Splat2, IN.uv_Control) * _Color;
-    //    fixed4 s3 = tex2D(_Splat3, IN.uv_Control) * _Color;
+#pragma vertex groundVert
+#pragma fragment groundFrag
+#pragma multi_compile_fwdbase
+//#pragma surface surf Standard fullforwardshadows
+#include "Lighting.cginc"
 
-    //    o.Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
-    //    //o.Emission = c.rgb;
+        //sampler2D _Control;
+        /*sampler2D _Splat0;
+        sampler2D _Splat1;
+        sampler2D _Splat2;
+        sampler2D _Splat3;
+              void surf(Input IN, inout SurfaceOutputStandard o)
+              {
+                    // Albedo comes from a texture tinted by color
+                    fixed4 c = tex2D(_Control, IN.uv_Control) * _Color;
+                    fixed4 s0 = tex2D(_Splat0, IN.uv_Control) * _Color;
+                    fixed4 s1 = tex2D(_Splat1, IN.uv_Control) * _Color;
+                    fixed4 s2 = tex2D(_Splat2, IN.uv_Control) * _Color;
+                    fixed4 s3 = tex2D(_Splat3, IN.uv_Control) * _Color;
 
-    //    // Metallic and smoothness come from slider variables
-    //    o.Metallic = _Metallic;
-    //    o.Smoothness = _Glossiness;
-    //    o.Alpha = c.a;
-    //}
+                    o.Albedo = s0 * c.r + s1 * c.g + s2 * c.b + s3 * c.a;
+                    //o.Emission = c.rgb;
+
+                    // Metallic and smoothness come from slider variables
+                    //o.Metallic = _Metallic;
+                    //o.Smoothness = _Glossiness;
+                    o.Alpha = c.a;
+              }*/
             float4 groundFrag(groundOutput i) : SV_Target
             {
+                //fixed4 c  = tex2D(_Control, uv_Control.xy) * _Color
+
                 float shadow = SHADOW_ATTENUATION(i);
                 float3 normal = normalize(i.normal);
                 float NdotL = saturate(dot(normal, _WorldSpaceLightPos0));
