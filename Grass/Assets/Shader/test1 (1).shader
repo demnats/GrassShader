@@ -33,6 +33,8 @@ Shader "Unlit/ShaderSkeleton"
         _BladeForward("Blade Forward Amount", Float) = 0.38
         _BladeCurve("Blade Curvature Amount", Range(1, 4)) = 2
         _BendRotationRandom("Bend Rotation Random", Range(0, 1)) = 0.2
+        _LowPolyGrassEnabled("Low poly distance grass/ Regular / following grass", Range(0,2)) = 2
+        _LowPolyGrassRadius("Grass Radius", Float) = 5.0
         [Header(Wind)]
         _WindDistortionMap("Wind Distortion Map", 2D) = "bump" {}
         _WindStrength("Wind Strength", Float) = 1
@@ -64,7 +66,7 @@ Shader "Unlit/ShaderSkeleton"
 
 
             sampler2D _Control;
-        float _GrassThreyHold;
+            float _GrassThreyHold;
             float4 _Control_ST;
             sampler2D _Splat0, _Splat1, _Splat2, _Splat3;
             float4 _Splat0_ST, _Splat1_ST, _Splat2_ST, _Splat3_ST;
@@ -76,6 +78,8 @@ Shader "Unlit/ShaderSkeleton"
             float _BladeForward;
             float _BladeCurve;
             float _BendRotationRandom;
+            float _LowPolyGrassEnabled;
+            float _LowPolyGrassRadius;
             sampler2D _WindDistortionMap;
             float4 _WindDistortionMap_ST;
             float _WindStrength;
@@ -233,18 +237,17 @@ Shader "Unlit/ShaderSkeleton"
                 float3 color = IN[0].color;
                 float3 worldPos = mul(unity_ObjectToWorld, float4(pos, 1.0)).xyz;
                 float dis = distance(worldPos, _PlayerPosition.xyz);
-                if (dis > _Radius) return;
+
+
+
 
                 float4 controlColor = tex2Dlod(_Control,float4 (uvControl,0,0));
                 float4 redColor = tex2Dlod(_Splat0, float4(uvSplat0, 0, 0));
-                float3 hoi = lerp(controlColor, redColor,1);
-                float3 hoihoi = lerp(hoi, pos,0.1);
-                float colorDistance = distance(dis + _Radius, controlColor.r * redColor.xyz );
+
                 //float3 redColor = float3(1.0, 0.0, 0.0); // Dit is de kleur rood
                 //float3 controlColor = float3(0.5, 0.5, 0.5);
 
-                fixed4 albedo = redColor * controlColor.r + 0 + 0 + 0;
-                //if (colorDistance >= -0.1)return;
+               // if (redColor.r <= 0.5) return;
                 
                 //bending grass
                 float3x3 facingRotationMatrix = AngleAxis3x3(rand(pos) * UNITY_TWO_PI, float3(0, 0, 1));
@@ -284,28 +287,40 @@ Shader "Unlit/ShaderSkeleton"
 
                 for (int i = 0; i < BLADE_SEGMENTS; i++)
                 {
-                    float t = i / (float)BLADE_SEGMENTS;
-                    float segmentHeight = height * t;
-                    float segmentWidth = width * (1 - t);
-                    float segmentForward = pow(t, _BladeCurve) * forward;
-                    float3x3 transformMatrix = i == 0 ? transformationMatrixFacing : transformationMatrix;
-                    float4 grassColor = lerp(_BottomColor, _TopColor, t) * _Color;
 
-                    float3 transformedPosition = mul(transformMatrix, pos) + (dis < 2 ? bendOffset : float3(0, 0, 0));
-                    if (dis < bendingArea)
-                    {
-                        triStream.Append(GenerateGrassVertex(pos + bendOffset, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
-                        triStream.Append(GenerateGrassVertex(pos + bendOffset, -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix, grassColor));
+                        float t = i / (float)BLADE_SEGMENTS;
+                        float segmentHeight = height * t;
+                        float segmentWidth = width * (1 - t);
+                        float segmentForward = pow(t, _BladeCurve) * forward;
+                        float3x3 transformMatrix = i == 0 ? transformationMatrixFacing : transformationMatrix;
+                        float4 grassColor = lerp(_BottomColor, _TopColor, t) * _Color;
+
+                        float3 transformedPosition = mul(transformMatrix, pos) + (dis < 2 ? bendOffset : float3(0, 0, 0));
+                        if (dis < _Radius) {
+                        if (dis < bendingArea)
+                        {
+                            triStream.Append(GenerateGrassVertex(pos + bendOffset, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
+                            triStream.Append(GenerateGrassVertex(pos + bendOffset, -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix, grassColor));
+                        }
+                        else
+                        {
+                            triStream.Append(GenerateGrassVertex(pos, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
+                            triStream.Append(GenerateGrassVertex(pos, -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix, grassColor));
+                        }
                     }
-                    else
-                    {
-                        triStream.Append(GenerateGrassVertex(pos, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
-                        triStream.Append(GenerateGrassVertex(pos, -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix, grassColor));
-                    }
+                        if (dis < _LowPolyGrassRadius & _LowPolyGrassEnabled < 1)
+                        {
+
+                                triStream.Append(GenerateGrassVertex(pos, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
+
+                        }
+
                 }
 
                 float4 topColor = _TopColor * _Color;
                 triStream.Append(GenerateGrassVertex(pos, 0, height, forward, float2(0.5, 1), transformationMatrix, topColor));
+
+
             }
 
 
