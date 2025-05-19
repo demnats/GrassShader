@@ -44,7 +44,7 @@ Shader "Unlit/ShaderSkeleton"
         _Radius("Radius", Float) = 1.0
         _EffectStrenght("Effect Strength", Range(0, 1)) = 0.1
         _FadeAmount("Fade", Float) = 1.0
-        _MaxHeight("Max Height", Float) = 0.5
+        _ReactingBend("Reacting bending", Float) = 0.5
         _GrassThreyHold("Red Amount", Float)=0.5
     }
 
@@ -87,7 +87,7 @@ Shader "Unlit/ShaderSkeleton"
             float4 _PlayerPosition;
             float _Radius;
             float _EffectStrenght;
-            float _MaxHeight;
+            float _ReactingBend;
             float _FadeAmount;
             float4 _TopColor;
             float4 _BottomColor;
@@ -231,23 +231,32 @@ Shader "Unlit/ShaderSkeleton"
             void geo(triangle testvertexOutput IN[3] : SV_POSITION, inout TriangleStream<geometryOutput> triStream)
             {
                 float3 pos = IN[0].vertex.xyz; 
-                //groundOutput i;
                 float2 uvControl = IN[0].uvControl;
                 float2 uvSplat0 = IN[0].uvSplat0;
                 float3 color = IN[0].color;
                 float3 worldPos = mul(unity_ObjectToWorld, float4(pos, 1.0)).xyz;
                 float dis = distance(worldPos, _PlayerPosition.xyz);
 
+                //Loading the different colors of the terain
+                float4 controlColor = tex2Dlod(_Control, float4(uvControl, 0, 0));
+                float4 splat0 = tex2Dlod(_Splat0, float4(uvSplat0, 0, 0));
+                float4 splat1 = tex2Dlod(_Splat1, float4(uvSplat0, 0, 0));
+                float4 splat2 = tex2Dlod(_Splat2, float4(uvSplat0, 0, 0));
+                float4 splat3 = tex2Dlod(_Splat3, float4(uvSplat0, 0, 0));
 
+                float4 albedo = splat0 * controlColor.r +
+                    splat1 * controlColor.g +
+                    splat2 * controlColor.b +
+                    splat3 * controlColor.a;
 
-
-                float4 controlColor = tex2Dlod(_Control,float4 (uvControl,0,0));
-                float4 redColor = tex2Dlod(_Splat0, float4(uvSplat0, 0, 0));
+                //to connect it to a collor but information cant return back to the void geo shader
+                /*float4 controlColor = tex2Dlod(_Control,float4 (uvControl,0,0));*/
+                //float4 redColor = tex2Dlod(_Splat0, float4(uvSplat0, 0, 0));
 
                 //float3 redColor = float3(1.0, 0.0, 0.0); // Dit is de kleur rood
                 //float3 controlColor = float3(0.5, 0.5, 0.5);
 
-               // if (redColor.r <= 0.5) return;
+                if (albedo.r <= 0.5) return;
                 
                 //bending grass
                 float3x3 facingRotationMatrix = AngleAxis3x3(rand(pos) * UNITY_TWO_PI, float3(0, 0, 1));
@@ -269,12 +278,12 @@ Shader "Unlit/ShaderSkeleton"
                 );
                 //reacting to player // Normalize the bending effect based on distance
 
- // Calculate bending direction towards the player
+                // Calculate bending direction towards the player
 
                     float3 bendingDirection = normalize(_PlayerPosition.xyz - worldPos.xyz);
                     float bendingArea = distance(dis, 3);
                     float bendingStrength = saturate(1 - (dis / 2));
-                    float bendOffSetMagniude = bendingStrength * _MaxHeight;
+                    float bendOffSetMagniude = bendingStrength * _ReactingBend;
 
                     float3 bendOffset = bendingDirection * bendOffSetMagniude;
 
@@ -296,21 +305,26 @@ Shader "Unlit/ShaderSkeleton"
                         float4 grassColor = lerp(_BottomColor, _TopColor, t) * _Color;
 
                         float3 transformedPosition = mul(transformMatrix, pos) + (dis < 2 ? bendOffset : float3(0, 0, 0));
-                        if (dis < _Radius) {
+                        if (dis < _Radius ) 
+                        {
                         if (dis < bendingArea)
                         {
+                            // hier komt mijn code (EXXXXXTRAAA!!!)
+                            float4 splat0 = tex2Dlod(_Splat0, float4(uvSplat0, 0, 0));
+                            //create bending arrea around player
                             triStream.Append(GenerateGrassVertex(pos + bendOffset, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
                             triStream.Append(GenerateGrassVertex(pos + bendOffset, -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix, grassColor));
                         }
                         else
                         {
+                            //regular grass
                             triStream.Append(GenerateGrassVertex(pos, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
                             triStream.Append(GenerateGrassVertex(pos, -segmentWidth, segmentHeight, segmentForward, float2(1, t), transformMatrix, grassColor));
                         }
-                    }
-                        if (dis < _LowPolyGrassRadius & _LowPolyGrassEnabled < 1)
+                        }
+                        if (dis < _LowPolyGrassRadius & _LowPolyGrassEnabled < 0.5)
                         {
-
+                            //Low poly in distance 
                                 triStream.Append(GenerateGrassVertex(pos, segmentWidth, segmentHeight, segmentForward, float2(0, t), transformMatrix, grassColor));
 
                         }
@@ -318,6 +332,7 @@ Shader "Unlit/ShaderSkeleton"
                 }
 
                 float4 topColor = _TopColor * _Color;
+                //Tip of the grass gets placed only on the bottem part
                 triStream.Append(GenerateGrassVertex(pos, 0, height, forward, float2(0.5, 1), transformationMatrix, topColor));
 
 
@@ -339,22 +354,22 @@ Shader "Unlit/ShaderSkeleton"
 
                     fixed4 groundFrag(groundOutput i) : SV_Target
                     {
-                        fixed4 control = tex2D(_Control, i.uvControl);
+                        //fixed4 control = tex2D(_Control, i.uvControl);
 
-                        fixed4 splat0 = tex2D(_Splat0, i.uvSplat0);
-                        fixed4 splat1 = tex2D(_Splat1, i.uvSplat1);
-                        fixed4 splat2 = tex2D(_Splat2, i.uvSplat2);
-                        fixed4 splat3 = tex2D(_Splat3, i.uvSplat3);
+                        //fixed4 splat0 = tex2D(_Splat0, i.uvSplat0);
+                        //fixed4 splat1 = tex2D(_Splat1, i.uvSplat1);
+                        //fixed4 splat2 = tex2D(_Splat2, i.uvSplat2);
+                        //fixed4 splat3 = tex2D(_Splat3, i.uvSplat3);
 
                         // Sample the control texture at the UV coordinates
 
                         // Output only the red channel as a grayscale color
 
 
-                        fixed4 albedo = splat0 * control.r +
+                   /*     fixed4 albedo = splat0 * control.r +
                                        splat1 * control.g +
                                        splat2 * control.b +
-                                       splat3 * control.a;
+                                       splat3 * control.a;*/
 
                         float shadow = SHADOW_ATTENUATION(i);
                         float3 normal = normalize(i.normal);
@@ -362,7 +377,7 @@ Shader "Unlit/ShaderSkeleton"
                         float3 ambient = ShadeSH9(float4(normal, 1));
                         float4 lightIntensity = NdotL * _LightColor0 * shadow + float4(ambient, 1);
                         //return fixed4(control.r, 0, 0, 1);
-                        return albedo * _Color * lightIntensity;
+                        //return albedo * _Color * lightIntensity;
                     }
                     ENDCG
         }

@@ -10,5 +10,10 @@ public class ShaderEffect : MonoBehaviour
     void Update()
     {
         grassMaterial.SetVector("_PlayerPosition", new Vector3 (player.position.x,0,player.position.z));
+        if (grassMaterial.GetFloat("_LowPolyGrassEnabled")>= 1.5) 
+        {
+            print(grassMaterial.GetFloat("_LowPolyGrassEnabled"));
+        }
+
     }
 }

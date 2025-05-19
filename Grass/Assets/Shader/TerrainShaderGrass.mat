@@ -77,40 +77,41 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BendRotationRandom: 0.196
-    - _BladeCurve: 2.29
+    - _BendRotationRandom: 0.271
+    - _BladeCurve: 2.11
     - _BladeForward: 0.71
-    - _BladeHeight: 1.81
+    - _BladeHeight: 2.68
     - _BladeHeightRandom: -0.17
-    - _BladeWidth: 0.01
-    - _BladeWidthRandom: 0.08
+    - _BladeWidth: -0.04
+    - _BladeWidthRandom: 0.18
     - _ContinionLowPoly: 1
-    - _EffectStrenght: 0.07
+    - _EffectStrenght: 0
     - _EffectStrength: 0.1
-    - _FadeAmount: -0.59
+    - _FadeAmount: -0.8
     - _Glossiness: 0
     - _GrassDensity: 0.074
     - _GrassThreshold: 0.5
-    - _GrassThreyHold: 0.91
+    - _GrassThreyHold: -3.6
     - _GroundTiling: 1
-    - _LowPolyGrassEnabled: 0
-    - _LowPolyGrassRadius: 172.6
+    - _LowPolyGrassEnabled: 0.35
+    - _LowPolyGrassRadius: 113.9
     - _LowPolyOrEffect: 0.25
-    - _MaxHeight: -0.21
+    - _MaxHeight: -0.29
     - _Metallic: 0
-    - _Radius: 26.7
-    - _TessellationUniform: 41.8
+    - _Radius: 26.75
+    - _ReactingBend: -0.24
+    - _TessellationUniform: 64
     - _Tiling0: 194.2
     - _Tiling1: 194.2
-    - _Tiling2: 196.66
+    - _Tiling2: 197.27
     - _Tiling3: 194.2
-    - _TranslucentGain: 1
+    - _TranslucentGain: 0.391
     - _WindStrength: 0.17
     m_Colors:
     - _BottomColor: {r: 0.035735127, g: 0.1981132, b: 0.028969381, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _GroundColor: {r: 0.4, g: 0.3, b: 0.2, a: 1}
-    - _PlayerPosition: {r: -1215.5, g: 0, b: -65.9301, a: 0}
+    - _PlayerPosition: {r: -1216.1882, g: 0, b: -61.39855, a: 0}
     - _TopColor: {r: 0.5421864, g: 0.8396226, b: 0.5029815, a: 1}
     - _WindFrequency: {r: 0.01, g: 0.01, b: 0, a: 0.06}
   m_BuildTextureStacks: []
